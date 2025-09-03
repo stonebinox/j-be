@@ -1,6 +1,6 @@
 # Jouster Backend Sample
 
-This is a minimal Express.js backend in TypeScript that exposes a `/analyze` endpoint. It accepts text from the frontend, sends it to OpenAI for summarization, and returns the summary.
+This is a minimal Express.js backend in TypeScript that exposes a `/api/analyze` endpoint. It accepts text from the frontend, sends it to OpenAI for summarization, and returns the summary.
 
 ## Setup
 
@@ -26,6 +26,6 @@ npm start
 
 ## Endpoint
 
-- **POST** `/analyze`
+- **POST** `/api/analyze`
   - Body: `{ "text": "your text here" }`
   - Returns: `{ "data": "..." }`

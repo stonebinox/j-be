@@ -1,19 +1,18 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+
 import { instructions } from "./lib/instructions";
 
-// Load environment variables from .env file
 dotenv.config();
-
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3000;
-
 app.use(express.json());
-
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-app.post("/analyze", async (req: Request, res: Response) => {
+app.post("/api/analyze", async (req: Request, res: Response) => {
   const { text } = req.body;
 
   if (!text) {
