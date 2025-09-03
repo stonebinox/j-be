@@ -21,12 +21,13 @@ app.post("/api/analyze", async (req: Request, res: Response) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-5-mini",
       messages: [
         { role: "system", content: instructions },
         { role: "user", content: text },
       ],
     });
+
     const summary = JSON.parse(completion.choices[0]?.message?.content || "");
     res.json({ data: summary });
   } catch (error: any) {

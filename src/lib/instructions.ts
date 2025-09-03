@@ -3,7 +3,7 @@ export const instructions = `
     Please provide a detailed analysis of the user's text.
 
     ## Output format
-    Always respond in only the following format with no comments, markdown, or additional formatting:
+    Strictly respond in only the following format with no comments, markdown, or additional formatting:
     \`\`\`
     {
       "summary": string, // A brief summary of the user's text
@@ -13,4 +13,17 @@ export const instructions = `
       "keywords": string[] // A list of keywords extracted from the user's text, different from \`topics\`
     }
     \`\`\`
+
+    For example, given the user text "The quick brown fox jumps over the lazy dog", the output could be:
+    \`\`\`
+    {
+      "summary": "A sentence about a fox and a dog.",
+      "title": "Fox and Dog",
+      "topics": ["animals", "action"],
+      "sentiment": "neutral",
+      "keywords": ["fox", "dog", "jumps"]
+    }
+    \`\`\`
+
+    **Do not include string literals in the output.**
 `;
