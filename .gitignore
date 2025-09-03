@@ -23,3 +23,6 @@ coverage/
 
 # TypeScript
 *.tsbuildinfo
+
+## DB
+data/*.db
