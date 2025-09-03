@@ -59,6 +59,30 @@ app.post("/api/analyze", async (req: Request, res: Response) => {
   }
 });
 
+// Endpoint to fetch last 100 history rows
+app.get("/api/history", async (req: Request, res: Response) => {
+  try {
+    const db = await getDb();
+    const rows = await db.all(
+      `SELECT id, user_input, summary, title, topics, sentiment, keywords, created_at
+       FROM history
+       ORDER BY id DESC
+       LIMIT 100`
+    );
+    await db.close();
+    // Parse topics and keywords from JSON
+    const parsedRows = rows.map((row: any) => ({
+      ...row,
+      topics: row.topics ? JSON.parse(row.topics) : [],
+      keywords: row.keywords ? JSON.parse(row.keywords) : [],
+    }));
+
+    res.json({ data: parsedRows });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message || "DB error." });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
